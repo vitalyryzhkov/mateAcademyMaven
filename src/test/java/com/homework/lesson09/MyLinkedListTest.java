@@ -6,7 +6,7 @@ import org.junit.Before;
 import static org.junit.Assert.assertEquals;
 
 public class MyLinkedListTest {
-    private MyLinkedList<Integer> myLinkedList;
+    private List<Integer> myLinkedList;
 
     @Before
     public void setUp() {
@@ -16,16 +16,16 @@ public class MyLinkedListTest {
 
     @Test
     public void get() {
-        int expected = myLinkedList.get(0);
-        int actual = 1;
+        int actual = myLinkedList.get(0);
+        int expected = 1;
         assertEquals(expected, actual);
     }
 
     @Test
     public void add() {
         myLinkedList.add(2);
-        int expected = myLinkedList.get(1);
-        int actual = 2;
+        int actual = myLinkedList.get(1);
+        int expected = 2;
         assertEquals(expected, actual);
     }
 
@@ -34,16 +34,15 @@ public class MyLinkedListTest {
         myLinkedList.add(2);
         myLinkedList.add(3);
         myLinkedList.remove(1);
-        int expected = myLinkedList.get(1);
-        int actual = 3;
+        int expected = 3;
+        int actual = myLinkedList.get(1);
         assertEquals(expected, actual);
-
     }
 
     @Test
     public void size() {
-        int expected = myLinkedList.size();
-        int actual = 1;
+        int actual = myLinkedList.size();
+        int expected = 1;
         assertEquals(expected, actual);
 
     }
@@ -51,8 +50,8 @@ public class MyLinkedListTest {
     @Test
     public void clear() {
         myLinkedList.clear();
-        int expected = myLinkedList.size();
-        int actual = 0;
+        int actual = myLinkedList.size();
+        int expected = 0;
         assertEquals(expected, actual);
     }
 }

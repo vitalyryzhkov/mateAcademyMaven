@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MyStackTest {
-    MyStack<Integer> myStack;
+    Stack<Integer> myStack;
 
     @Before
     public void setUp() {
@@ -16,16 +16,16 @@ public class MyStackTest {
     @Test
     public void push() {
         myStack.push(1);
-        int expected = myStack.peek();
-        int actual = 1;
+        int expected = 1;
+        int actual = myStack.peek();
         assertEquals(expected, actual);
     }
 
     @Test
     public void pop() {
         myStack.push(1);
-        int expected = myStack.pop();
-        int actual = 1;
+        int expected = 1;
+        int actual = myStack.pop();
         assertEquals(expected, actual);
     }
 
@@ -35,8 +35,8 @@ public class MyStackTest {
         myStack.push(2);
         myStack.push(3);
         myStack.remove(1);
-        int expected = myStack.getSize();
-        int actual = 2;
+        int expected = 2;
+        int actual = myStack.getSize();
         assertEquals(expected, actual);
     }
 
@@ -44,8 +44,8 @@ public class MyStackTest {
     public void peek() {
         myStack.push(1);
         myStack.push(2);
-        int expected = myStack.peek();
-        int actual = 2;
+        int expected = 2;
+        int actual = myStack.peek();
         assertEquals(expected, actual);
     }
 
@@ -53,8 +53,8 @@ public class MyStackTest {
     public void getSize() {
         myStack.push(1);
         myStack.push(1);
-        int expected = myStack.getSize();
-        int actual = 2;
+        int actual = myStack.getSize();
+        int expected = 2;
         assertEquals(expected, actual);
     }
 
@@ -63,8 +63,8 @@ public class MyStackTest {
         myStack.push(1);
         myStack.push(1);
         myStack.clear();
-        int expected = myStack.getSize();
-        int actual = 0;
+        int expected = 0;
+        int actual = myStack.getSize();
         assertEquals(expected, actual);
     }
 }
