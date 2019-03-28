@@ -1,32 +1,27 @@
 package com.homework.lesson10;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class ValidatorsApp {
 
+    private static final String REGEX_PHONE_NUMBER = "^(380)?[\\d]{9}$";
+    private static final String REGEX_EMAIL = "[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}";
+    private static final String REGEX_DATE = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
+    private static final String REGEX_IP = "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
+
+
     public boolean isPhoneNumber(String number) {
-        Pattern pattern = Pattern.compile("^\\\\+?[0-9. ()-]{10,25}$");
-        Matcher matcher = pattern.matcher(number);
-        return matcher.matches();
+        String result = number.replaceAll("[\\D]", "");
+        return result.matches(REGEX_PHONE_NUMBER);
     }
 
     public boolean isEmail(String email) {
-        Pattern pattern = Pattern.compile("^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$");
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        return email.matches(REGEX_EMAIL);
     }
 
-    public boolean isDate (String date) {
-        Pattern pattern = Pattern.compile("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$");
-        Matcher matcher = pattern.matcher(date);
-        return matcher.matches();
+    public boolean isDate(String date) {
+        return date.matches(REGEX_DATE);
     }
 
     public boolean isIp(String ip) {
-        Pattern pattern = Pattern.compile("(([01]?\\\\d\\\\d?|2[0-4]\\\\d|25[0-5])\\\\.){3}([01]?\\\\d\\\\d?|2[0-4]\\\\d|25[0-5])");
-        Matcher matcher = pattern.matcher(ip);
-        return matcher.matches();
+        return ip.matches(REGEX_IP);
     }
-
 }
