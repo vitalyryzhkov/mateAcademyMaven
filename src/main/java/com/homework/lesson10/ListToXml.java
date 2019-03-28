@@ -35,12 +35,10 @@ public class ListToXml {
     }
 
     public void convertListToXml(List list) {
-        try (FileOutputStream fileOutputStream = new FileOutputStream("listToXml.xml")) {
-            XMLEncoder encoder = new XMLEncoder(fileOutputStream);
+        try (XMLEncoder encoder = new XMLEncoder(new FileOutputStream("listToXml.xml"))) {
             encoder.writeObject(list);
-            encoder.close();
         } catch (IOException e) {
-            LOGGER.info("Error convert");
+            LOGGER.error(e.getMessage());
         }
     }
 }
