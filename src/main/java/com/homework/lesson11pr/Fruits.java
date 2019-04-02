@@ -1,5 +1,5 @@
 
-package com.homework.lesson11;
+package com.homework.lesson11pr;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
