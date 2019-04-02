@@ -1,7 +1,7 @@
 package com.homework.lesson11;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Getter
