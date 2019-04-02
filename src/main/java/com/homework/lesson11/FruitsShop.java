@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 public class FruitsShop {
@@ -17,8 +18,7 @@ public class FruitsShop {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     public void addFruits(String pathToJsonFile) throws IOException {
-        List<Fruits> fruitsList;
-        fruitsList = (objectMapper.readValue(new File(pathToJsonFile), new TypeReference<List<Fruits>>() {
+        List<Fruits> fruitsList = (objectMapper.readValue(new File(pathToJsonFile), new TypeReference<List<Fruits>>() {
         }));
         fruitsArrayList.addAll(fruitsList);
     }
@@ -35,45 +35,21 @@ public class FruitsShop {
     }
 
     public List<Fruits> getSpoiledFruits(LocalDate localDate) {
-        List<Fruits> list = new ArrayList<>();
-        for (Fruits x : fruitsArrayList) {
-            if (parseDate(x)
-                    .isBefore(localDate)) {
-                list.add(x);
-            }
-        }
-        return list;
+        return fruitsArrayList.stream().filter(x -> parseDate(x)
+                .isBefore(localDate)).collect(Collectors.toList());
     }
 
     public List<Fruits> getSpoiledFruits(LocalDate targetDate, FruitsType type) {
-        List<Fruits> list = new ArrayList<>();
-        for (Fruits x : fruitsArrayList) {
-            if (parseDate(x)
-                    .isBefore(targetDate) && x.getType().equals(type)) {
-                list.add(x);
-            }
-        }
-        return list;
+        return fruitsArrayList.stream().filter(x -> parseDate(x)
+                .isBefore(targetDate) && x.getType().equals(type)).collect(Collectors.toList());
     }
 
     public List<Fruits> getAvailableFruits(LocalDate targetDate) {
-        List<Fruits> list = new ArrayList<>();
-        for (Fruits x : fruitsArrayList) {
-            if (parseDate(x).isAfter(targetDate)) {
-                list.add(x);
-            }
-        }
-        return list;
+        return fruitsArrayList.stream().filter(x -> parseDate(x).isAfter(targetDate)).collect(Collectors.toList());
     }
 
     public List<Fruits> getAvailableFruits(LocalDate targetDate, FruitsType type) {
-        List<Fruits> list = new ArrayList<>();
-        for (Fruits x : fruitsArrayList) {
-            if (parseDate(x).isAfter(targetDate)) {
-                list.add(x);
-            }
-        }
-        return list;
+        return fruitsArrayList.stream().filter(x -> parseDate(x).isAfter(targetDate)).collect(Collectors.toList());
     }
 
     private LocalDate parseDate(Fruits fruits) {
