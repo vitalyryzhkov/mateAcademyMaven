@@ -1,21 +1,17 @@
 package com.homework.lesson11;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class FruitsShopTest {
 
-    ObjectMapper objectMapper;
     private FruitsShop fruitsShop;
     private List<Fruits> fruitsList = new ArrayList<>();
 
@@ -29,23 +25,23 @@ public class FruitsShopTest {
         fruitsList.add(pear);
     }
 
-//    @Test
-//    public void addFruits() {
-//        fruitsShop.addFruits("src/main/resources/fruitApple.json");
-//        assertEquals(4, fruitsShop.getFruitsArrayList().size());
-//    }
-//
-//    @Test
-//    public void save() {
-//        fruitsShop.save("src/main/resources/fruitApple.json");
-//        assertEquals(4, fruitsShop.getFruitsArrayList().size());
-//    }
-//
-//    @Test
-//    public void load() {
-//        fruitsShop.load("src/main/resources/fruitApple.json");
-//        assertEquals(4, fruitsShop.getFruitsArrayList().size());
-//    }
+    @Test
+    public void addFruits() {
+        fruitsShop.addFruits("src/main/resources/fruitApple.json");
+        assertEquals(4, fruitsShop.getFruitsArrayList().size());
+    }
+
+    @Test
+    public void save() {
+        fruitsShop.save("src/main/resources/fruitApple.json");
+        assertEquals(4, fruitsShop.getFruitsArrayList().size());
+    }
+
+    @Test
+    public void load() {
+        fruitsShop.load("src/main/resources/fruitApple.json");
+        assertEquals(4, fruitsShop.getFruitsArrayList().size());
+    }
 
     @Test
     public void getSpoiledFruits() {
