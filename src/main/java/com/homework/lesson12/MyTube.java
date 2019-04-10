@@ -5,25 +5,23 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class MyTube {
 
+    private static final Logger LOGGER = Logger.getLogger(MyTube.class);
     private static final String APPLICATION_NAME = "API code samples";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     public static void main(String[] args) {
-        ParseToJson parseToJson = new ParseToJson();
-
-        MyTubeParser myTubeParser = new MyTubeParser();
         try {
-            myTubeParser.videoTitleParsing();
-            myTubeParser.commentsParsing();
-            parseToJson.parseToJson();
+            new MyTubeParser().videoTitleParsing();
+            new MyTubeParser().commentsParsing();
         } catch (IOException | GeneralSecurityException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 

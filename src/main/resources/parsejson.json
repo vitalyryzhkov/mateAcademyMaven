@@ -1,0 +1,51 @@
+[ {
+  "authorName" : "Dex Luthor",
+  "textMessage" : "шум можно легко убрать...погугли.",
+  "countLikes" : 0,
+  "timeLastChange" : {
+    "value" : 1552859040000,
+    "dateOnly" : false,
+    "timeZoneShift" : 0
+  },
+  "edit" : false
+}, {
+  "authorName" : "Dex Luthor",
+  "textMessage" : "этот канал это огромная куча знаний, даже если не поймешь, будешь знать что нужно понять, дает знание что еще можно изучить... не знаю почему, но хочу скачать каждое видео, люблю все полезное к себе на жесткий ставить",
+  "countLikes" : 0,
+  "timeLastChange" : {
+    "value" : 1552858992000,
+    "dateOnly" : false,
+    "timeZoneShift" : 0
+  },
+  "edit" : false
+}, {
+  "authorName" : "Dmtry",
+  "textMessage" : "спасибо, после просмотра добавил докер в свое резюме.  <br />В следующем видео буду давать тебе умные советы.",
+  "countLikes" : 2,
+  "timeLastChange" : {
+    "value" : 1552480032000,
+    "dateOnly" : false,
+    "timeZoneShift" : 0
+  },
+  "edit" : true
+}, {
+  "authorName" : "Roman Shilov",
+  "textMessage" : "Спасибо за труда! <br />А почему удалил плей лист со Spring?",
+  "countLikes" : 1,
+  "timeLastChange" : {
+    "value" : 1552475269000,
+    "dateOnly" : false,
+    "timeZoneShift" : 0
+  },
+  "edit" : false
+}, {
+  "authorName" : "Nerubj",
+  "textMessage" : "хороший шум, думаю после 5 уроков уже голова будет болеть от такого",
+  "countLikes" : 10,
+  "timeLastChange" : {
+    "value" : 1552470452000,
+    "dateOnly" : false,
+    "timeZoneShift" : 0
+  },
+  "edit" : false
+} ]
