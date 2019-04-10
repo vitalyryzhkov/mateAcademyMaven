@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class MyTube {
-
     private static final Logger LOGGER = Logger.getLogger(MyTube.class);
     private static final String APPLICATION_NAME = "API code samples";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
