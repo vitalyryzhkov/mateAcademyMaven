@@ -53,11 +53,14 @@ public class MyTubeParser {
         response.getItems().stream().map(commentThread ->
                 commentThread.getSnippet().getTopLevelComment().getSnippet())
                 .forEach(commentSnippet -> {
-                    Comment comment = new Comment(commentSnippet.getAuthorDisplayName(),
-                            commentSnippet.getTextDisplay(),
-                            commentSnippet.getLikeCount(),
-                            commentSnippet.getPublishedAt(),
-                            !Objects.equals(commentSnippet.getUpdatedAt(), commentSnippet.getPublishedAt()));
+                    Comment comment = Comment.builder()
+                            .authorName(commentSnippet.getAuthorDisplayName())
+                            .textMessage(commentSnippet.getTextDisplay())
+                            .countLikes(commentSnippet.getLikeCount())
+                            .timeLastChange(commentSnippet.getPublishedAt())
+                            .isEdit(!Objects.equals(commentSnippet.getUpdatedAt(), commentSnippet.getPublishedAt()))
+                            .build();
+
                     commentsList.add(comment);
                 });
 
