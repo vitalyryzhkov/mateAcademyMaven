@@ -1,8 +1,10 @@
 package com.homework.lesson14.abstractfactory;
 
 class RuLadaImpl implements Lada {
+    private static final int LADA_PRICE = 10000;
+
     @Override
     public long getLadaPrice() {
-        return 10000;
+        return LADA_PRICE;
     }
 }

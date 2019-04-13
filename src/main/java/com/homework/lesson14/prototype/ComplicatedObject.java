@@ -2,7 +2,7 @@ package com.homework.lesson14.prototype;
 
 import lombok.Setter;
 
-public class ComplicatedObject implements Copyable {
+public class ComplicatedObject implements Cloneable {
     @Setter
     private Type type;
 
@@ -10,8 +10,9 @@ public class ComplicatedObject implements Copyable {
         ONE, TWO,
     }
 
-    @Override
-    public ComplicatedObject copy() {
-        return new ComplicatedObject();
+    public ComplicatedObject clone() throws CloneNotSupportedException {
+//    @Override
+//    public ComplicatedObject copy() {
+        return (ComplicatedObject) super.clone();
     }
 }

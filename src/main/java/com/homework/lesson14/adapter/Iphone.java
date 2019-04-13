@@ -1,13 +1,15 @@
 package com.homework.lesson14.adapter;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class Iphone {
-    private int price;
+    private final int PRICE = 100;
 
-    public Iphone() {
-        price = 100;
-    }
-
-    public void getPrice() {
-        System.out.println("Iphone price = " + price);
+    @Override
+    public String toString() {
+        return "Iphone price = " + PRICE;
     }
 }

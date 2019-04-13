@@ -1,8 +1,10 @@
 package com.homework.lesson14.abstractfactory;
 
 class UaPorsheImpl implements Porshe {
+    private static final int PORSHE_PRICE = 2000;
+
     @Override
     public long getPorshePrice() {
-        return 2000;
+        return PORSHE_PRICE;
     }
 }

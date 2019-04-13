@@ -1,13 +1,10 @@
 package com.homework.lesson14.adapter;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class Samsung {
-    private int price;
-
-    public Samsung() {
-        price = 200;
-    }
-
-    public void getPrice() {
-        System.out.println("Samsung price = " + price);
-    }
+    private final int PRICE = 200;
 }

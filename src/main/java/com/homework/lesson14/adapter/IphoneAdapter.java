@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 public class IphoneAdapter extends Iphone {
     private Samsung samsung;
 
-    public void getPrice() {
-        samsung.getPrice();
+        public int getPrice() {
+        return samsung.getPRICE();
     }
 }
