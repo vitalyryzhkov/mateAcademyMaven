@@ -11,8 +11,6 @@ public class ComplicatedObject implements Cloneable {
     }
 
     public ComplicatedObject clone() throws CloneNotSupportedException {
-//    @Override
-//    public ComplicatedObject copy() {
         return (ComplicatedObject) super.clone();
     }
 }

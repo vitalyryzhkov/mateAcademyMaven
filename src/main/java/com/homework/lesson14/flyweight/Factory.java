@@ -4,13 +4,16 @@ public class Factory {
     private Flyweight[] pool;
 
     public Factory(int maxRows) {
-        if (maxRows >= 0) {
+        if (maxRows < 0) {
+            maxRows = 0;
+        } else {
             pool = new Flyweight[maxRows];
         }
     }
 
     public Flyweight getFlyweight(int row) {
-        if (row >= 0) {
+        if (row < 0) {
+            row = 0;
             if (pool[row] == null) {
                 pool[row] = new Flyweight(row);
             }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class Iphone {
-    private final int PRICE = 100;
+    private static final int PRICE = 100;
 
     @Override
     public String toString() {
