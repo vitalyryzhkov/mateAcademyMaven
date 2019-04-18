@@ -1,20 +1,22 @@
 package com.homework.lesson15.dao;
 
-import com.homework.lesson15.entities.Skills;
+import com.homework.lesson15.entities.Project;
+import com.homework.lesson15.interfaces.ProjectDao;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 import javax.persistence.EntityManager;
 
-@Log4j
 @AllArgsConstructor
-public class SkillDao {
+@Log4j
+public class ProjectDaoImpl implements ProjectDao<Project> {
     private EntityManager entityManager;
 
-    public boolean createSkill(Skills skill) {
+    @Override
+    public boolean createProject(Project project) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(skill);
+            entityManager.persist(project);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -26,10 +28,11 @@ public class SkillDao {
         }
     }
 
-    public boolean updateSkill(Skills skill) {
+    @Override
+    public boolean updateProject(Project project) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(skill);
+            entityManager.merge(project);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -41,12 +44,13 @@ public class SkillDao {
         }
     }
 
-    public Skills readSkill(Long id) {
+    @Override
+    public Project readProject(Long id) {
         try {
             entityManager.getTransaction().begin();
-            Skills skill = entityManager.find(Skills.class, id);
+            Project project = entityManager.find(Project.class, id);
             entityManager.getTransaction().commit();
-            return skill;
+            return project;
         } catch (RuntimeException e) {
             if (entityManager != null) {
                 entityManager.getTransaction().rollback();
@@ -56,10 +60,11 @@ public class SkillDao {
         }
     }
 
-    public boolean deleteSkill(Long id) {
+    @Override
+    public boolean deleteProject(Long id) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.find(Skills.class, id));
+            entityManager.remove(entityManager.find(Project.class, id));
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {

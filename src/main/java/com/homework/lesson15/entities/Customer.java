@@ -8,11 +8,10 @@ import lombok.extern.log4j.Log4j;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
@@ -26,79 +25,60 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
 @Log4j
+@MappedSuperclass
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
 @Builder
-@Table(name = "developers")
-public class Developers {
-
+@Table(name = "customers")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "name", length = 255)
     private String name;
 
     @Column(name = "surname", length = 255)
-    private String type;
+    private String surname;
 
-    @Column(name = "age")
-    private int age;
-
-    @Column(name = "sex")
-    private String sex;
-
-    @ManyToMany
-    @JoinTable(name = "developer_skill",
-            joinColumns = @JoinColumn(name = "developer_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id")
-    )
-    private Set<Skills> skills = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "developer_project",
-            joinColumns = @JoinColumn(name = "developer_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id")
-    )
-    private Set<Projects> project = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "customers")
+    private Set<Company> companies = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
-        log.info("Developers.onPrePersist()");
+        log.info("Customer.onPrePersist()");
     }
 
     @PostPersist
     public void postPersist() {
-        log.info("Developers.onPostPersist()");
+        log.info("Customer.onPostPersist()");
     }
 
     @PreUpdate
     public void preUpdate() {
-        log.info("Developers.onPreUpdate()");
+        log.info("Customer.onPreUpdate()");
     }
 
     @PostUpdate
     public void postUpdate() {
-        log.info("Developers.onPostUpdate()");
+        log.info("Customer.onPostUpdate()");
     }
 
     @PreRemove
     public void preRemove() {
-        log.info("Developers.onPreRemove()");
+        log.info("Customer.onPreRemove()");
     }
 
     @PostRemove
     public void postRemove() {
-        log.info("Developers.onPostRemove()");
+        log.info("Customer.onPostRemove()");
     }
 
     @PostLoad
     public void postLoad() {
-        log.info("Developers.onPostLoad()");
+        log.info("Customer.onPostLoad()");
     }
 }
-

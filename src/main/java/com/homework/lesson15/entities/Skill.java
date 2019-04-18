@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,60 +27,61 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
+@MappedSuperclass
+@Log4j
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
 @Entity
-@Log4j
-@MappedSuperclass
-@Table(name = "companies")
-public class Companies {
+@Data
+@Builder
+@Table(name = "skills")
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", length = 255)
-    private String name;
+    @Column(name = "language", length = 255)
+    private String language;
 
-    @Column(name = "address", length = 255)
-    private String address;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "level", length = 255)
+    private LevelType level;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "companies")
-    private Set<Developers> developers = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "skills")
+    private Set<Developer> developers = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
-        log.info("Companies.onPrePersist()");
+        log.info("Skill.onPrePersist()");
     }
 
     @PostPersist
     public void postPersist() {
-        log.info("Companies.onPostPersist()");
+        log.info("Skill.onPostPersist()");
     }
 
     @PreUpdate
     public void preUpdate() {
-        log.info("Companies.onPreUpdate()");
+        log.info("Skill.onPreUpdate()");
     }
 
     @PostUpdate
     public void postUpdate() {
-        log.info("Companies.onPostUpdate()");
+        log.info("Skill.onPostUpdate()");
     }
 
     @PreRemove
     public void preRemove() {
-        log.info("Companies.onPreRemove()");
+        log.info("Skill.onPreRemove()");
     }
 
     @PostRemove
     public void postRemove() {
-        log.info("Companies.onPostRemove()");
+        log.info("Skill.onPostRemove()");
     }
 
     @PostLoad
     public void postLoad() {
-        log.info("Companies.onPostLoad()");
+        log.info("Skill.onPostLoad()");
     }
 }

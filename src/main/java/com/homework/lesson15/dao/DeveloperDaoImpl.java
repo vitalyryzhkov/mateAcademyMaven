@@ -1,22 +1,22 @@
 package com.homework.lesson15.dao;
 
-import com.homework.lesson15.entities.Projects;
+import com.homework.lesson15.entities.Developer;
+import com.homework.lesson15.interfaces.DeveloperDao;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 import javax.persistence.EntityManager;
 
+@AllArgsConstructor
 @Log4j
-public class ProjectDao {
+public class DeveloperDaoImpl implements DeveloperDao<Developer> {
     private EntityManager entityManager;
 
-    public ProjectDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public boolean createProject(Projects project) {
+    @Override
+    public boolean createDeveloper(Developer developer) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(project);
+            entityManager.persist(developer);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -28,10 +28,11 @@ public class ProjectDao {
         }
     }
 
-    public boolean updateProject(Projects project) {
+    @Override
+    public boolean updateDeveloper(Developer developer) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(project);
+            entityManager.merge(developer);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -43,12 +44,13 @@ public class ProjectDao {
         }
     }
 
-    public Projects readProject(Long id) {
+    @Override
+    public Developer readDeveloper(Long id) {
         try {
             entityManager.getTransaction().begin();
-            Projects project = entityManager.find(Projects.class, id);
+            Developer developer = entityManager.find(Developer.class, id);
             entityManager.getTransaction().commit();
-            return project;
+            return developer;
         } catch (RuntimeException e) {
             if (entityManager != null) {
                 entityManager.getTransaction().rollback();
@@ -58,10 +60,11 @@ public class ProjectDao {
         }
     }
 
-    public boolean deleteProject(Long id) {
+    @Override
+    public boolean deleteDeveloper(Long id) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.find(Projects.class, id));
+            entityManager.remove(entityManager.find(Developer.class, id));
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {

@@ -1,22 +1,22 @@
 package com.homework.lesson15.dao;
 
-import com.homework.lesson15.entities.Customers;
+import com.homework.lesson15.entities.Skill;
+import com.homework.lesson15.interfaces.SkillDao;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 import javax.persistence.EntityManager;
 
 @Log4j
-public class CustomerDao {
+@AllArgsConstructor
+public class SkillDaoImpl implements SkillDao<Skill> {
     private EntityManager entityManager;
 
-    public CustomerDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public boolean createCustomer(Customers customer) {
+    @Override
+    public boolean createSkill(Skill skill) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(customer);
+            entityManager.persist(skill);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -28,10 +28,11 @@ public class CustomerDao {
         }
     }
 
-    public boolean updateCustomer(Customers customer) {
+    @Override
+    public boolean updateSkill(Skill skill) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(customer);
+            entityManager.merge(skill);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -43,12 +44,13 @@ public class CustomerDao {
         }
     }
 
-    public Customers readCustomer(Long id) {
+    @Override
+    public Skill readSkill(Long id) {
         try {
             entityManager.getTransaction().begin();
-            Customers customer = entityManager.find(Customers.class, id);
+            Skill skill = entityManager.find(Skill.class, id);
             entityManager.getTransaction().commit();
-            return customer;
+            return skill;
         } catch (RuntimeException e) {
             if (entityManager != null) {
                 entityManager.getTransaction().rollback();
@@ -58,10 +60,11 @@ public class CustomerDao {
         }
     }
 
-    public boolean deleteCustomer(Long id) {
+    @Override
+    public boolean deleteSkill(Long id) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.find(Customers.class, id));
+            entityManager.remove(entityManager.find(Skill.class, id));
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {

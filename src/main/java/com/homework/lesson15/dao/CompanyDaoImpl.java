@@ -1,22 +1,22 @@
 package com.homework.lesson15.dao;
 
-import com.homework.lesson15.entities.Developers;
+import com.homework.lesson15.entities.Company;
+import com.homework.lesson15.interfaces.CompanyDao;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 import javax.persistence.EntityManager;
 
+@AllArgsConstructor
 @Log4j
-public class DeveloperDao {
+public class CompanyDaoImpl implements CompanyDao<Company>  {
     private EntityManager entityManager;
 
-    public DeveloperDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public boolean createDeveloper(Developers developers) {
+    @Override
+    public boolean createCompany(Company company) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(developers);
+            entityManager.persist(company);
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {
@@ -28,27 +28,13 @@ public class DeveloperDao {
         }
     }
 
-    public boolean updateDeveloper(Developers developers) {
+    @Override
+    public Company readCompany(Long id) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(developers);
+            Company company = entityManager.find(Company.class, id);
             entityManager.getTransaction().commit();
-            return true;
-        } catch (RuntimeException e) {
-            if (entityManager != null) {
-                entityManager.getTransaction().rollback();
-            }
-            log.error(e.getMessage());
-            return false;
-        }
-    }
-
-    public Developers readDeveloper(Long id) {
-        try {
-            entityManager.getTransaction().begin();
-            Developers developer = entityManager.find(Developers.class, id);
-            entityManager.getTransaction().commit();
-            return developer;
+            return company;
         } catch (RuntimeException e) {
             if (entityManager != null) {
                 entityManager.getTransaction().rollback();
@@ -58,10 +44,27 @@ public class DeveloperDao {
         }
     }
 
-    public boolean deleteDeveloper(Long id) {
+    @Override
+    public boolean updateCompany(Company company) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.find(Developers.class, id));
+            entityManager.merge(company);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (RuntimeException e) {
+            if (entityManager != null) {
+                entityManager.getTransaction().rollback();
+            }
+            log.error(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteCompany(Long id) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(entityManager.find(Company.class, id));
             entityManager.getTransaction().commit();
             return true;
         } catch (RuntimeException e) {

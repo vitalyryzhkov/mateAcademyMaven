@@ -25,60 +25,60 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
-@Log4j
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Data
 @Builder
-@Table(name = "skills")
-public class Skills {
+@Data
+@Entity
+@Log4j
+@MappedSuperclass
+@Table(name = "companies")
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(name = "language", length = 255)
-    private String language;
+    @Column(name = "name", length = 255)
+    private String name;
 
-    @Column(name = "level", length = 255)
-    private String level;
+    @Column(name = "address", length = 255)
+    private String address;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "skills")
-    private Set<Developers> developers = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "companies")
+    private Set<Developer> developers = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
-        log.info("Skills.onPrePersist()");
+        log.info("Company.onPrePersist()");
     }
 
     @PostPersist
     public void postPersist() {
-        log.info("Skills.onPostPersist()");
+        log.info("Company.onPostPersist()");
     }
 
     @PreUpdate
     public void preUpdate() {
-        log.info("Skills.onPreUpdate()");
+        log.info("Company.onPreUpdate()");
     }
 
     @PostUpdate
     public void postUpdate() {
-        log.info("Skills.onPostUpdate()");
+        log.info("Company.onPostUpdate()");
     }
 
     @PreRemove
     public void preRemove() {
-        log.info("Skills.onPreRemove()");
+        log.info("Company.onPreRemove()");
     }
 
     @PostRemove
     public void postRemove() {
-        log.info("Skills.onPostRemove()");
+        log.info("Company.onPostRemove()");
     }
 
     @PostLoad
     public void postLoad() {
-        log.info("Skills.onPostLoad()");
+        log.info("Company.onPostLoad()");
     }
 }

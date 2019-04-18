@@ -1,23 +1,24 @@
 package com.homework.lesson15;
 
-import com.homework.lesson15.dao.DeveloperDao;
-import com.homework.lesson15.entities.Developers;
+import com.homework.lesson15.dao.DeveloperDaoImpl;
+import com.homework.lesson15.entities.Developer;
+import com.homework.lesson15.entities.SexType;
 import com.homework.lesson15.services.HibernateUtil;
 
 import javax.persistence.EntityManager;
 
-public class JpaUtil {
+public class Jpa {
     public static void main(String[] args) {
         EntityManager entityManager = HibernateUtil.getEntityManagerFactory().createEntityManager();
 
-        Developers developers = Developers.builder()
+        Developer developer = Developer.builder()
                 .name("Davi")
                 .age(19)
-                .sex("female")
+                .sex(SexType.FEMALE)
                 .build();
 
-        DeveloperDao developerDao = new DeveloperDao(entityManager);
-        developerDao.createDeveloper(developers);
+        DeveloperDaoImpl developerDao = new DeveloperDaoImpl(entityManager);
+        developerDao.createDeveloper(developer);
         HibernateUtil.close();
 
     }
