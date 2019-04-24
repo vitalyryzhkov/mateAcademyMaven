@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
@@ -27,7 +26,6 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
 @Log4j
 @AllArgsConstructor
 @NoArgsConstructor
@@ -47,7 +45,7 @@ public class Skill {
     @Column(name = "level", length = 255)
     private LevelType level;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "skills")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "skill")
     private Set<Developer> developers = new HashSet<>();
 
     @PrePersist

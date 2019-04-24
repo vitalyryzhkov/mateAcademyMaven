@@ -6,29 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PostLoad;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
 @Log4j
 @AllArgsConstructor
 @NoArgsConstructor
@@ -62,16 +43,19 @@ public class Developer {
     )
     private Set<Skill> skills = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "developers")
     @JoinTable(name = "developer_project",
             joinColumns = @JoinColumn(name = "developer_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id")
     )
-    private Set<Project> project = new HashSet<>();
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "developers")
+    private Set<Project> projects = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
         log.info("Developer.onPrePersist()");
+
     }
 
     @PostPersist
@@ -104,4 +88,3 @@ public class Developer {
         log.info("Developer.onPostLoad()");
     }
 }
-

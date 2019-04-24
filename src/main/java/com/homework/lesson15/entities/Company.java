@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
@@ -31,7 +30,6 @@ import java.util.Set;
 @Data
 @Entity
 @Log4j
-@MappedSuperclass
 @Table(name = "companies")
 public class Company {
     @Id

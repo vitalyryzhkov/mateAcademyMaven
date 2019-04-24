@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
@@ -25,7 +24,6 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@MappedSuperclass
 @Log4j
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,7 +44,7 @@ public class Project {
     private String type;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
-    private Set<Developer> developers = new HashSet<>();
+    private Set<Developer> developer = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
