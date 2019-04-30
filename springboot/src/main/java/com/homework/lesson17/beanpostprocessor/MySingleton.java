@@ -14,7 +14,6 @@ import javax.annotation.PreDestroy;
 @Getter
 @Setter
 @Component
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class MySingleton {
     private String name;
 
