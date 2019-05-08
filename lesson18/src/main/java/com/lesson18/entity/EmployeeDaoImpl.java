@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -56,7 +57,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         try {
             return jdbcTemplate.query(SELECT_ALL, new BeanPropertyRowMapper<>(Employee.class));
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 }
