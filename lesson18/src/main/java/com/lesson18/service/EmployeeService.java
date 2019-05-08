@@ -13,7 +13,7 @@ public interface EmployeeService {
 
     void deleteEmployee(int employeeId);
 
-    Optional<Employee> find(int employeeId);
+    Employee find(int employeeId);
 
     List<Employee> findAll();
 }

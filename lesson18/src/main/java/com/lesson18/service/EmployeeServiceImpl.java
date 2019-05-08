@@ -26,8 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDao.deleteEmployee(employeeId);
     }
 
-    public Optional<Employee> find(int employeeId) {
-        return employeeDao.find(employeeId);
+    public Employee find(int employeeId) {
+        return employeeDao.find(employeeId).orElse(new Employee());
     }
 
     public List<Employee> findAll() {
