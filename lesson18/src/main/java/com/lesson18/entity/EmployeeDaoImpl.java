@@ -1,6 +1,7 @@
 package com.lesson18.entity;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -42,13 +43,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     public Optional<Employee> find(int employeeId) {
-        Employee employee = jdbcTemplate.queryForObject(SELECT,
-                new Object[] {employeeId}, new BeanPropertyRowMapper<>(Employee.class));
-
-        return Optional.ofNullable(employee);
+        try {
+            Employee employee = jdbcTemplate.queryForObject(SELECT,
+                    new Object[]{employeeId}, new BeanPropertyRowMapper<>(Employee.class));
+            return Optional.ofNullable(employee);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     public List<Employee> findAll() {
-        return jdbcTemplate.query(SELECT_ALL, new BeanPropertyRowMapper<>(Employee.class));
+        try {
+            return jdbcTemplate.query(SELECT_ALL, new BeanPropertyRowMapper<>(Employee.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
