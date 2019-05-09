@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @AllArgsConstructor
 @Configuration
-@ComponentScan(basePackages = "com.lesson18")
+@ComponentScan(basePackages = "com.lesson19")
 @PropertySource(value = { "classpath:application.properties" })
 public class AppConfig {
 
